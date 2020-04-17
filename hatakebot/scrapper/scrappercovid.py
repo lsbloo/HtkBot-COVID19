@@ -12,6 +12,7 @@ import os
 import sys
 import glob
 from datetime import date
+from .settings.config_variables import SETTINGS_PATHS_CONFIG_BOT,SETTINGS_PATH_SAVE_ARCH_CSV
 
 
 
@@ -88,21 +89,29 @@ class HatakeBot(object):
 
     def validate_config_csv(self):
         if self.path_csv_save != None:
-            re =[]
-            for file in glob.glob('*.csv*'):
-                re.append(file)
-            
-            return self.last_recent_csv(re)[0]
+            try:
+                re =[]
+                for file in glob.glob('*.csv*'):
+                    re.append(file)
+                
+                return self.last_recent_csv(re)[0]
+            except IndexError as e:
+                print("Don't have archive .csv update in directory trace: \n %s "%e)
+
         return None
     
         
-        
-PATH_BINARY_FIREFOX= '/usr/bin/firefox'
-SITE_EXAMPLE='https://covid.saude.gov.br/'
-PATH_SAVE="/home/osvaldoairon/"
 
-bot = HatakeBot(PATH_BINARY_FIREFOX,SITE_EXAMPLE,PATH_SAVE)
-#html_load = bot.download_csv_page()
-#bot.soup(html_load)
-bot.validate_config_csv()
+def get_instance_bot():
+
+    bot = HatakeBot(SETTINGS_PATHS_CONFIG_BOT[0],SETTINGS_PATHS_CONFIG_BOT[1],SETTINGS_PATH_SAVE_ARCH_CSV[0])
+    #html_load = bot.download_csv_page()
+    #bot.soup(html_load)
+    #bot.validate_config_csv()
+    return bot
+
+
+
+
+
 
