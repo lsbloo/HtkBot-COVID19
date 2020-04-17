@@ -12,5 +12,4 @@ class Covid19(object):
         self.obitosNovos=obitosNovos
         self.obitosAcumulados=obitosAcumulados
     
-    def __str__(self):
-        pass
+
