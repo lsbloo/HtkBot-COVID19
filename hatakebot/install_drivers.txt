@@ -1,0 +1,7 @@
+
+UNIX: 
+	opcao 01: ADICIONAR O CAMINHO DO DRIVER PARA A VARIAVEL PATH
+	opcao 02: copiar os drives para o caminho executavel /usr/local/bin.
+
+WINDOWS:
+	opcao 01: EU NAO USO WINDOWS ....
