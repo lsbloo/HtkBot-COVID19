@@ -3,7 +3,7 @@ import time
 from datetime import time
 import sys
 
-from settings.config_variables import SETTINGS_DATABASE,SETTINGS_DATABASE_QUERY
+from .settings.config_variables import SETTINGS_DATABASE,SETTINGS_DATABASE_QUERY
 
 class CovidGov(object):
     def __init__(self, **kwargs):
