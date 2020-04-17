@@ -62,13 +62,13 @@ class OperatorDatabase(object):
             cursor = self.instance_db.cursor()
             for k in list_model_csv:
                 sql_= SETTINGS_DATABASE_QUERY[1][0]+SETTINGS_DATABASE_QUERY[1][1]+SETTINGS_DATABASE_QUERY[1][2]%(k.regiao,k.estado,k.data,k.casosNovos,k.casosAcumulados,k.obitosNovos,k.obitosAcumulados)
-            
+                print(sql_)
                 cursor.execute(sql_)
             
             cursor.close()
             return True
         except Exception as e:
-            print(e)
+            print("Error Insert: ",e)
             return False
         
     def drop(self):

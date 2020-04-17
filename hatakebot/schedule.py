@@ -6,8 +6,8 @@ from threading import Thread
 from time import sleep
 
 class ScheduleBot(object):
-    def __init__(self,time,bot,manipulator,db,*args,**kwargs):
-        self.time=time
+    def __init__(self,timexz,bot,manipulator,db,*args,**kwargs):
+        self.timex=timexz
         self.bot=bot
         self.manipulator=manipulator
         self.db=db
@@ -21,12 +21,19 @@ class ScheduleBot(object):
     def run(self):
         self.check=True
         while self.check:
+            self.manipulator.drop_all_csv()
             self.bot.download_csv_page(False)
+
             csv_update= self.bot.validate_config_csv()
+
             q = self.manipulator.reader_csv(csv_update)
+
+            self.db.drop()
             self.db.create_table()
-            self.db.insert(q)
-            time.sleep(self.time)
+
+            self.db.insert(q.get("dataset:"))
+            
+            sleep(self.timex)
     
     def stop(self):
         self.check=check
