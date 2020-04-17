@@ -1,5 +1,0 @@
-selenium==3.141.0
-bs4==0.0.1
-psycopg2==2.8.4
-psycopg2-binary==2.8.4
-virtualenv==16.0.0
