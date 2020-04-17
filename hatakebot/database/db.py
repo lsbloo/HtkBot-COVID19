@@ -3,7 +3,7 @@ import time
 from datetime import time
 import sys
 
-from .settings.config_variables import SETTINGS_DATABASE,SETTINGS_DATABASE_QUERY
+from .settings.config_variables import SETTINGS_DATABASE,SETTINGS_DATABASE_QUERY,CREATE_TABLE
 
 class CovidGov(object):
     def __init__(self, **kwargs):
@@ -44,14 +44,43 @@ class OperatorDatabase(object):
             print("Instance: %s " %str(self.instance_db))
     
     def create_table(self):
-        cursor = self.instance_db.cursor()
-        sql_ = SETTINGS_DATABASE_QUERY[0]
-        cursor.execute(sql_)
-        cursor.close()
-        print('Table Create')
+        try:
+            cursor = self.instance_db.cursor()
+            sql_ = SETTINGS_DATABASE_QUERY[0][0]+SETTINGS_DATABASE_QUERY[0][1]+SETTINGS_DATABASE_QUERY[0][2]
+            cursor.execute(sql_)
+            cursor.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+    
 
+
+    
+    def insert(self,list_model_csv):
+        try:
+            cursor = self.instance_db.cursor()
+            for k in list_model_csv:
+                sql_= SETTINGS_DATABASE_QUERY[1][0]+SETTINGS_DATABASE_QUERY[1][1]+SETTINGS_DATABASE_QUERY[1][2]%(k.regiao,k.estado,k.data,k.casosNovos,k.casosAcumulados,k.obitosNovos,k.obitosAcumulados)
+            
+                cursor.execute(sql_)
+            
+            cursor.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
         
-
+    def drop(self):
+        try:
+            cursor = self.instance_db.cursor()
+            sql_ = SETTINGS_DATABASE_QUERY[3]%SETTINGS_DATABASE[0]
+            cursor.execute(sql_)
+            cursor.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
     
 class InstanceException(Exception):
     pass
