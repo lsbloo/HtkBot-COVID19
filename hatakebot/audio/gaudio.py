@@ -13,10 +13,14 @@ pygame.init()
 
 commands_result = {
     "drop": "tabela deletada com sucesso",
+    "drop_csv": "Arquivos csv deletados com sucesso",
     "create": "tabela criada com sucesso",
     "download": "download csv efetuado com sucesso",
     "insert": "dados inseridos no banco de dados com sucesso",
-    "fail_csv": "não foi possivel encontrar nenhum csv no diretorio."
+    "fail_csv": "não foi possivel encontrar nenhum csv no diretorio.",
+    "bot_schedule": "bot programado para execução com cronograma. Para parar a execução finalize o processo!",
+    "htk_bot": "Olá, procurando informações sobre covid19.",
+    "fim": "fim de execução."
 }
 
 FOLDER_AUDIO= "audios/"
@@ -36,6 +40,8 @@ class PlayAudio(object):
         print(FOLDER_AUDIO)
         
     def create_audio(self,command_result):
+        pygame.init()
+        
         if self.check_dir():
             os.chdir(self.path_save+FOLDER_AUDIO)
             text_correspondente = commands_result.get(command_result)
@@ -50,6 +56,8 @@ class PlayAudio(object):
     
     def play(self,command_result):
         try:
+            pygame.init()
+            
             os.chdir(self.path_save+FOLDER_AUDIO)
             text_correspondente = commands_result.get(command_result)
             path_completo = self.path_save+FOLDER_AUDIO+text_correspondente+".mp3"

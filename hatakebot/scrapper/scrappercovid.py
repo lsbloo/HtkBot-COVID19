@@ -54,7 +54,7 @@ class HatakeBot(object):
         print("Buscando Arquivo em %s ... !" %self.site_covid)
         binary = FirefoxBinary(self.PATH_BINARY_FIREFOX)
         navigator = webdriver.Firefox(firefox_profile=self.get_my_profiles(),options=self.get_my_options(head_less_or_not))
-        navigator.set_page_load_timeout(20)
+        navigator.set_page_load_timeout(30)
         navigator.get(self.site_covid)
         html = navigator.page_source
         root = navigator.find_elements_by_tag_name('ion-button')
@@ -84,7 +84,7 @@ class HatakeBot(object):
             for i in r:
                 f = f + i
             return f
-        elif today == 2:
+        elif last_day == 2:
             q = str(dt)
             r = q.split("-")
             x = int(r[2]) - 1
@@ -149,6 +149,7 @@ class HatakeBot(object):
                 os.chdir(self.path_csv_save)
                 for file in glob.glob('*.csv*'):
                     re.append(file)
+                
                 if len(self.last_recent_csv(re,2,0)) == 0 :
                     print("ok -1")
                     if len(self.last_recent_csv(re,1,0)) == 0:
