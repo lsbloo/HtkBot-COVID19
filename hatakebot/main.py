@@ -3,13 +3,15 @@ from util.csv_validator import get_instance_manipulator
 from database.db import get_instance_db
 from database.db import OperatorDatabase
 from schedule import ScheduleBot
+from audio.gaudio import get_instance_audio
 import time
 import sys
 
 
 
 htkbot = get_instance_bot()
-
+htkbot_audio = get_instance_audio()
+print(htkbot_audio.play("insert"))
 
 #Operation web-scrapper ok collect
 #htkbot.download_csv_page(False)
