@@ -44,3 +44,7 @@ For building and running the application you need:
 
   * Help
          -> python3 execute.py --help
+
+### Example helper
+
+![Screenshot](htkbot.png 'Exemplo helper')
