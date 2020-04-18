@@ -2,7 +2,7 @@
    <p> 
        Coleta informações sobre o covid19 atraves do site do governo. O bot realiza o scrapping do site coleta as informações e armazena em uma base de dados automaticamente. Ele também possui recursos de audio que informa qual operação esta sendo executada no momento. Como também possui funcionalidades para execução com cronograma. Isso mesmo, voce pode deixar ele executando de tempos em tempos. 
    </p>
-* Using generator_data.py
+* Using execute.py
 
 ## Table of content
 - [Getting Started]
@@ -24,8 +24,8 @@ For building and running the application you need:
 - Localize the archive install_dep_pygame.sh
 - aplly ./install_dep_pygame.sh
 
--Localize the folder 'drives/firefox' and copy geckodriver
--apply copy geckodriver to /usr/local/bin
+- Localize the folder 'drives/firefox' and copy geckodriver
+- apply copy geckodriver to /usr/local/bin
 
 #### Environment Variables
 
