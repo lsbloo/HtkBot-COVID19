@@ -20,13 +20,14 @@ SETTINGS_DATABASE = (
 
 # DATABASE QUERYS.
 CREATE_TABLE = "CREATE TABLE IF NOT EXISTS ",SETTINGS_DATABASE[0]," (regiao varchar(255), estado varchar(2), data varchar(255), casosNovos varchar(255), casosAcumulados varchar(255), obitosNovos varchar(255), obitosAcumulados varchar(255) ); "
-INSERT_TABLE = "INSERT INTO ",SETTINGS_DATABASE[0]," (regiao,estado,data,casosNovos,casosAcumulados,obitosNovos,obitosAcumulados) VALUES (%s,%s,%s,%s,%s,%s,%s) ;"
-SELECT_ALL="SELECT regiao,estado,data,casosNovos,casosAcumulados,obitosNovos,obitosAcmulados FROM covid19_brasil ;"
+INSERT_TABLE = "INSERT INTO ",SETTINGS_DATABASE[0]," (regiao,estado,data,casosnovos,casosacumulados,obitosnovos,obitosacumulados) VALUES ('%s','%s','%s','%s','%s','%s','%s'); "
+SELECT_ALL="SELECT regiao,estado,data,casosNovos,casosacumulados,obitosnovos,obitosacumulados FROM covid19_brasil ;"
+DROP_TABLE="DROP TABLE  %s ;"
 SETTINGS_DATABASE_QUERY = (
     CREATE_TABLE,
     INSERT_TABLE,
-    SELECT_ALL
-
+    SELECT_ALL,
+    DROP_TABLE,
 )
 
 

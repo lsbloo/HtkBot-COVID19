@@ -51,7 +51,7 @@ class HatakeBot(object):
         return fp
         
     def download_csv_page(self,head_less_or_not):
-        print("Carregando Driver... !")
+        print("Buscando Arquivo em %s ... !" %self.site_covid)
         binary = FirefoxBinary(self.PATH_BINARY_FIREFOX)
         navigator = webdriver.Firefox(firefox_profile=self.get_my_profiles(),options=self.get_my_options(head_less_or_not))
         navigator.set_page_load_timeout(20)
@@ -73,9 +73,9 @@ class HatakeBot(object):
         parset = BeautifulSoup(html,'html.parser')
         return parset
     
-    def today_date(self,last_day):
+    def today_date(self,last_day,today):
         dt = date.today()
-        if last_day:
+        if last_day == 1:
             q = str(dt)
             r = q.split("-")
             x = int(r[2]) - 2
@@ -84,7 +84,7 @@ class HatakeBot(object):
             for i in r:
                 f = f + i
             return f
-        else:
+        elif today == 2:
             q = str(dt)
             r = q.split("-")
             x = int(r[2]) - 1
@@ -93,11 +93,18 @@ class HatakeBot(object):
             for i in r:
                 f = f + i
             return f
-        
-    def last_recent_csv(self,re,last_day):
+        if today == 3:
+            q = str(dt)
+            r = q.split("-")
+            f=""
+            for i in r:
+                f = f + i
+            return f
+
+    def last_recent_csv(self,re,last_day,today):
         candidates=[]
         validated=[]
-        if last_day:
+        if last_day==1:
             for i in re:
                 name = str(i).split("_")
                 if len(name) > 2:
@@ -105,11 +112,11 @@ class HatakeBot(object):
             for k in candidates:
                 for key in k.keys():
                     q = k[key][3].split(".")
-                    if q[0] == self.today_date(last_day):
+                    if q[0] == self.today_date(1,0):
                         validated.append(key)
             
             return validated
-        else:
+        elif last_day== 2:
             for i in re:
                 name = str(i).split("_")
                 if len(name) > 2:
@@ -117,10 +124,23 @@ class HatakeBot(object):
             for k in candidates:
                 for key in k.keys():
                     q = k[key][3].split(".")
-                    if q[0] == self.today_date(last_day):
+                    if q[0] == self.today_date(2,0):
                         validated.append(key)
             
             return validated
+        if today==3:
+            for i in re:
+                name = str(i).split("_")
+                if len(name) > 2:
+                    candidates.append({i: name})
+            for k in candidates:
+                for key in k.keys():
+                    q = k[key][3].split(".")
+                    if q[0] == self.today_date(0,3):
+                        validated.append(key)
+            
+            return validated
+
 
     def validate_config_csv(self):
         if self.path_csv_save != None:
@@ -129,13 +149,18 @@ class HatakeBot(object):
                 os.chdir(self.path_csv_save)
                 for file in glob.glob('*.csv*'):
                     re.append(file)
-                
-                return self.last_recent_csv(re,False)[0]
-            except IndexError as e:
-                print("Don't have archive .csv update in directory trace: \n %s "%e)
-                print()
-                print('Searching archive last day.... ')
-                return self.last_recent_csv(re,True)[0]
+                if len(self.last_recent_csv(re,2,0)) == 0 :
+                    print("ok -1")
+                    if len(self.last_recent_csv(re,1,0)) == 0:
+                        print('ok -2 ')
+                        return self.last_recent_csv(re,0,3)[0]
+                    else:
+                        return self.last_recent_csv(re,1,0)[0]
+                else:
+                    return self.last_recent_csv(re,2,0)[0]
+
+            except Exception as e:
+                return None
 
         return None
     

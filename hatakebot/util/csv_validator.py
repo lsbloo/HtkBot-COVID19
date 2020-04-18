@@ -2,6 +2,7 @@ from .settings.config_variables import SETTINGS_PATH_SAVE_ARCH_CSV
 from .model.models import Covid19
 import os
 import csv
+import glob
 
 
 class ManipulatorCSV(object):
@@ -49,8 +50,24 @@ class ManipulatorCSV(object):
         return {"header:" : header, "dataset:" : self.generate_list_models(self.validator_csv(data_set_valid))} 
 
 
+    # cuidado ao usar esse metodo pois ele apagar todos os arquivos .csv do diretorio setado na configuração do ambiente;
+    """
+        -> Remove all archives .csv of directory set in envoriment variables; WARNNING
+    """
     def drop_all_csv(self):
-        pass
+        try:
+            os.chdir(self.path_csv)
+            #print(self.path_csv)
+            for file in glob.glob('*.csv*'):
+                os.remove(file)
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+
+
+
 
 def get_instance_manipulator():
     return ManipulatorCSV(SETTINGS_PATH_SAVE_ARCH_CSV[0])
