@@ -1,4 +1,4 @@
-## HatakeBot
+## HatakeBot :robot:
    <p> 
        Coleta informações sobre o covid19 atraves do site do governo. O bot realiza o scrapping do site coleta as informações e armazena em uma base de dados automaticamente. Ele também possui recursos de audio que informa qual operação esta sendo executada no momento. Como também possui funcionalidades para execução com cronograma. Isso mesmo, voce pode deixar ele executando de tempos em tempos. 
    </p>
