@@ -1,7 +1,4 @@
-### Video Tutorial
-
-#### Clique na Imagem. ;p 
-
+#### Clique na imagem.
 [![Funcionalidades Htkbot-v1](htkbotimg.png)](https://www.youtube.com/watch?v=qSEuwE75lIA "Funcionalidades Htkbot-v1")
 
 
