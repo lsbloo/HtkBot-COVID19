@@ -6,7 +6,8 @@
 
 ### Video Tutorial
 
-[link text](https://www.youtube.com/watch?v=qSEuwE75lIA "Funcionalidades htkbotv1")
+[![Funcionalidades Htkbot-v1](htkbotimg.png)](https://www.youtube.com/watch?v=qSEuwE75lIA "Funcionalidades Htkbot-v1")
+
 
 ## Table of content
 - [Getting Started]
