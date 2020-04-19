@@ -5,8 +5,7 @@
 * Using execute.py
 
 
-#### Clique na imagem. 
-:point_down:
+#### Click Here. :point_down:
 [![Funcionalidades Htkbot-v1](htkbotimg.png)](https://www.youtube.com/watch?v=qSEuwE75lIA "Funcionalidades Htkbot-v1")
 
 
