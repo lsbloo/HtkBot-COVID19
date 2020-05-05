@@ -61,8 +61,9 @@ class HatakeBot(object):
         for i in range(101):
             time.sleep(0.1)
             print(i,"%", end=" ")
-    
-        res = root[3].click()
+        
+
+        res = root[2].click()
         
         print()
         print()
@@ -129,15 +130,19 @@ class HatakeBot(object):
             
             return validated
         if today==3:
-            for i in re:
-                name = str(i).split("_")
-                if len(name) > 2:
-                    candidates.append({i: name})
-            for k in candidates:
-                for key in k.keys():
-                    q = k[key][3].split(".")
-                    if q[0] == self.today_date(0,3):
-                        validated.append(key)
+            try:
+                for i in re:
+                    name = str(i).split("_")
+                    if len(name) > 2:
+                        candidates.append({i: name})
+                for k in candidates:
+                    for key in k.keys():
+                        q = k[key][3].split(".")
+                        if q[0] == self.today_date(0,3):
+                            validated.append(key)
+            except Exception as e:
+                print(e)
+                return None
             
             return validated
 
@@ -149,12 +154,13 @@ class HatakeBot(object):
                 os.chdir(self.path_csv_save)
                 for file in glob.glob('*.csv*'):
                     re.append(file)
-                
+                #print(re[0])
+
                 if len(self.last_recent_csv(re,2,0)) == 0 :
                     print("ok -1")
                     if len(self.last_recent_csv(re,1,0)) == 0:
                         print('ok -2 ')
-                        return self.last_recent_csv(re,0,3)[0]
+                        return str(re[0])
                     else:
                         return self.last_recent_csv(re,1,0)[0]
                 else:
