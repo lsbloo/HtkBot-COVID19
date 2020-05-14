@@ -49,6 +49,10 @@ For building and running the application you need:
 
   * Help
          -> python3 execute.py --help
+         
+### Using API-HTKBOT
+
+* https://github.com/lsbloo/API-HTKBOT/
 
 ### Example helper
 
